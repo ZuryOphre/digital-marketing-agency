@@ -9,13 +9,13 @@ export const metadata = {
   description: "Digital Marketing Agency",
 };
 
-const Layout = ({ children }) => (
-  <div>
-    <Head>  
-      <link rel="shortcut icon" href="/favicon.ico" />
-    </Head>
-    <body className={inter.className}>{children}</body>
-  </div>
-);
-
-export default Layout;
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <body className={inter.className}>{children}</body>
+    </html>
+  );
+}
