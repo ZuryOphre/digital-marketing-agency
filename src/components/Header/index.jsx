@@ -1,64 +1,76 @@
 'use client';
 
 import React, { useState } from 'react';
-import { FiMenu } from 'react-icons/fi';
-import Link from 'next/link';
-import Logo from '../Logo';
+import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
+import ContainerIhome from '../ContainerPages/containerIhome';
+import ContainerAbout from '../ContainerPages/containerAbout';
+import ContainerServices from '../ContainerPages/containerServices';
+import ContainerBlog from '../ContainerPages/containerBlog';
+import ContainerGallery from '../ContainerPages/containerGallery';
+import ContainerContact from '../ContainerPages/containerContact';
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [nav, setNav] = useState(false);
+  const [activeComponent, setActiveComponent] = useState('containerihome');
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+  const handleNav = () => {
+    setNav(!nav);
   };
 
+  // Array containing navigation items
+  const navItems = [
+    { id: 1, text: 'Inicio', component: 'containerihome' },
+    { id: 2, text: 'Acerca de', component: 'containerabout' },
+    { id: 3, text: 'Servicios', component: 'containerservices' },
+    { id: 4, text: 'Blog', component: 'containerblog' },
+    { id: 5, text: 'Galeria', component: 'containergallery' },
+    { id: 6, text: 'Contact', component: 'containercontact' },
+  ];
+
   return (
-    <header className="text-black glass">
-      <div className="container mx-auto flex items-center justify-between pt-2">
-        <div className="flex items-center z-0">
-          <Logo src="/logo.png" alt="Logo" width={90} height={90} className="flex-shrink-0 pt-0" />
-          <h1 className="ml-2 text-xl font-bold hidden md:flex">Sōshiza</h1>
-          <p className='ml-2 text-xs hidden md:flex'>Digital Marketing Agency </p>
+    <>
+      <div className='bg-darkgray flex justify-between items-center h-24 max-w-full mx-auto px-4 text-cyanforce'>
+        
+        <div className='flex justify-items-start col-span-1'>
+        <img src='/logo.png' alt='logo' className='w-16' />
+        <h1 className='w-full text-3xl font-bold text-softmint mt-3'>Sōshiza</h1>
+        
         </div>
-        <nav className="hidden md:flex space-x-4 pr-5">
-          <Link href="#"><span className="cursor-pointer text-black hover:text-gray-500 py-2 pr-1">Home</span></Link>
-          <Link href="#"><span className="cursor-pointer text-black hover:text-gray-500 py-2 pr-1">About</span></Link>
-          <Link href="#"><span className="cursor-pointer text-black hover:text-gray-500 py-2 pr-1">Services</span></Link>
-          <Link href="#"><span className="cursor-pointer text-black hover:text-gray-500 py-2 pr-1">Blog</span></Link>
-          <Link href="#"><span className="cursor-pointer text-black hover:text-gray-500 py-2 pr-1">Gallery</span></Link>
-          <Link href="#"><span className="cursor-pointer text-black hover:text-gray-500 py-2 pr-1">Contact</span></Link>
-        </nav>
-        <div className="md:hidden pr-3">
-          {!isMenuOpen && (
-            <button onClick={toggleMenu} className="text-black focus:outline-none">
-              <FiMenu className="h-6 w-6" />
-            </button>
-          )}
-          {isMenuOpen && (
-            <div
-              className="fixed inset-0 glass  flex items-center justify-end z-50" // Added solid color and adjusted z-index
-            >
-              <div className="h-full w-64 p-4 glass">
-                <div className="flex items-center justify-between mb-8">
-                  <h1 className="text-xl font-bold text-black pt-3">Sōshiza</h1>
-                  <button onClick={toggleMenu} className="text-black focus:outline-none pt-3">
-                    <FiMenu className="h-6 w-6" />
-                  </button>
-                </div>
-                <ul>
-                  <li><Link href="#"><span className="block py-2 cursor-pointer text-black  hover:text-gray-500">Home</span></Link></li>
-                  <li><Link href="#"><span className="block py-2 cursor-pointer text-black  hover:text-gray-500">About</span></Link></li>
-                  <li><Link href="#"><span className="block py-2 cursor-pointer text-black  hover:text-gray-500">Services</span></Link></li>
-                  <li><Link href="#"><span className="block py-2 cursor-pointer text-black  hover:text-gray-500">Blog</span></Link></li>
-                  <li><Link href="#"><span className="block py-2 cursor-pointer text-black  hover:text-gray-500">Gallery</span></Link></li>
-                  <li><Link href="#"><span className="block py-2 cursor-pointer text-black  hover:text-gray-500">Contact</span></Link></li>
-                </ul>
-              </div>
-            </div>
-          )}
+
+        {/* Desktop Navigation */}
+        <ul className='hidden md:flex'>
+          {navItems.map(item => (
+            <li key={item.id} className='p-4 hover:bg-teal-500 rounded-xl m-2 cursor-pointer duration-300 hover:text-black' onClick={() => setActiveComponent(item.component)}>
+              {item.text}
+            </li>
+          ))}
+        </ul>
+        <div onClick={handleNav} className='block md:hidden z-50'>
+          {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
         </div>
+        <ul
+          className={
+            nav
+              ? 'fixed md:hidden mt-16 right-0 top-0 w-[60%] h-full border-l border-l-gray-900 bg-darkgray ease-in-out duration-500 z-40'
+              : 'ease-in-out w-[60%] duration-500 fixed top-0 bottom-0 right-[-100%] z-40'
+          }
+        >
+          {navItems.map(item => (
+            <li key={item.id} className='p-4 border-b rounded-xl hover:bg-teal-500 duration-300 hover:text-black cursor-pointer border-gray-600' onClick={() => setActiveComponent(item.component)}>
+              {item.text}
+            </li>
+          ))}
+        </ul>
       </div>
-    </header>
+      <main>
+        {activeComponent === 'containerihome' && <ContainerIhome />}
+        {activeComponent === 'containerabout' && <ContainerAbout />}
+        {activeComponent === 'containerservices' && <ContainerServices />}
+        {activeComponent === 'containerblog' && <ContainerBlog />}
+        {activeComponent === 'containergallery' && <ContainerGallery />}
+        {activeComponent === 'containercontact' && <ContainerContact />}
+      </main>
+    </>
   );
 };
 
