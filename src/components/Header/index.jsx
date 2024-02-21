@@ -2,16 +2,16 @@
 
 import React, { useState } from 'react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
-import ContainerIhome from '../ContainerPages/containerIhome';
-import ContainerAbout from '../ContainerPages/containerAbout';
-import ContainerServices from '../ContainerPages/containerServices';
-import ContainerBlog from '../ContainerPages/containerBlog';
-import ContainerGallery from '../ContainerPages/containerGallery';
-import ContainerContact from '../ContainerPages/containerContact';
+import Ihome from '@/pages/ihome';
+import About from '@/pages/about';
+import Services from  '@/pages/services';
+import Blog from '@/pages/blog';
+import Gallery from '@/pages/gallery';
+import Contact from '@/pages/contact';
 
 const Header = () => {
   const [nav, setNav] = useState(false);
-  const [activeComponent, setActiveComponent] = useState('containerihome');
+  const [activeComponent, setActiveComponent] = useState('ihome');
 
   const handleNav = () => {
     setNav(!nav);
@@ -19,12 +19,12 @@ const Header = () => {
 
   // Array containing navigation items
   const navItems = [
-    { id: 1, text: 'Inicio', component: 'containerihome' },
-    { id: 2, text: 'Acerca de', component: 'containerabout' },
-    { id: 3, text: 'Servicios', component: 'containerservices' },
-    { id: 4, text: 'Blog', component: 'containerblog' },
-    { id: 5, text: 'Galeria', component: 'containergallery' },
-    { id: 6, text: 'Contact', component: 'containercontact' },
+    { id: 1, text: 'Inicio', component: 'ihome' },
+    { id: 2, text: 'Acerca de', component: 'about' },
+    { id: 3, text: 'Servicios', component: 'services' },
+    { id: 4, text: 'Blog', component: 'blog' },
+    { id: 5, text: 'Galeria', component: 'gallery' },
+    { id: 6, text: 'Contacto', component: 'contact' },
   ];
 
   return (
@@ -63,12 +63,12 @@ const Header = () => {
         </ul>
       </div>
       <main>
-        {activeComponent === 'containerihome' && <ContainerIhome />}
-        {activeComponent === 'containerabout' && <ContainerAbout />}
-        {activeComponent === 'containerservices' && <ContainerServices />}
-        {activeComponent === 'containerblog' && <ContainerBlog />}
-        {activeComponent === 'containergallery' && <ContainerGallery />}
-        {activeComponent === 'containercontact' && <ContainerContact />}
+        {activeComponent === 'ihome' && <Ihome />}
+        {activeComponent === 'about' && <About />}
+        {activeComponent === 'services' && <Services />}
+        {activeComponent === 'blog' && <Blog />}
+        {activeComponent === 'gallery' && <Gallery />}
+        {activeComponent === 'contact' && <Contact />}
       </main>
     </>
   );
