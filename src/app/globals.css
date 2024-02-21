@@ -5,7 +5,41 @@
 /* styles.css */
 
 :root {
-  background-color: rgb(219, 219, 219);
+  background-color: #08192c;
+  
+}
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background-color: #067CA6;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #23BFB1;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+  border-radius: 5px;
+}
+
+::-moz-scrollbar {
+  width: 10px;
+  height: 10px;
+  background-color: #067CA6;
+  border-radius: 5px;
+}
+
+::-moz-scrollbar {
+  background-color: #23BFB1;
+  border-radius: 5px;
+}
+
+::-moz-scrollbar-track {
+  background-color: #f5f5f5;
+  border-radius: 5px;
 }
 
 .glass {
@@ -14,5 +48,95 @@
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(14.8px);
   -webkit-backdrop-filter: blur(14.8px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
 }
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px; /* Adjust this to add space between the cards */
+  justify-items: center; /* Center the cards horizontally */
+}
+
+@media screen and (max-width: 600px) {
+  .card-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.glass-card {
+  /* existing styles */
+  width: 300px;
+  height: 200px;
+  overflow: auto;
+}
+
+
+/* Colores de fondo */
+.bg-darkgray {
+  background-color: #0D2138;
+}
+
+.bg-cyanforce {
+  background-color: #23BFB1;
+}
+
+.bg-softmint {
+  background-color: #D2F3CE;
+}
+
+.bg-sky {
+  background-color: #067CA6;
+}
+
+.bg-softgray {
+  background-color: #5E787B;
+}
+
+/* Colores de texto */
+.text-darkgray {
+  color: #0D2138;
+}
+
+.text-cyanforce {
+  color: #23BFB1;
+}
+
+.text-softmint {
+  color: #D2F3CE;
+}
+
+.text-sky {
+  color: #067CA6;
+}
+
+.text-softgray {
+  color: #5E787B;
+}
+
+.border-cyanforce {
+  --tw-border-opacity: 1;
+  border-color: rgba(35, 191, 177, var(--tw-border-opacity));
+}
+
+.fixed-layout {
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .header nav.md:flex-row.md:block {
+    display: none;
+  }
+  .mobile-menu-container.hidden.md:hidden {
+    display: block;
+  }
+}
+
