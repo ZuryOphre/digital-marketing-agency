@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
+import Image from 'next/image';
 import Ihome from '@/pages/ihome';
 import About from '@/pages/about';
 import Services from  '@/pages/services';
@@ -32,7 +33,7 @@ const Header = () => {
       <div className='bg-darkgray flex justify-between items-center h-24 max-w-full mx-auto px-4 text-cyanforce'>
         
         <div className='flex justify-items-start col-span-1'>
-        <img src='/logo.png' alt='logo' className='w-16' />
+        <Image src='/logo.png' alt='logo' width={64} height={64} className='w-16 h-16' />
         <h1 className='w-full text-3xl font-bold text-softmint mt-3'>Sōshiza</h1>
         
         </div>
